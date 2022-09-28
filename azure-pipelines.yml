@@ -20,35 +20,41 @@ stages:
       steps:
       - script: echo Job2 step2!
       - script: echo $(PiplineLevelVariable)
+      - script: echo $(Build.BuildNum)
+      - script: echo $(Build.Repository.Name)
+      - script: echo $(Build.SourceBranchName)
+      - script: echo $(Build.ArtifactStagingDirectory)
+      - script: echo $(System.DefaultWorkingDirectory)
+
       displayName: 'Run second Job'
 
-- stage: DEvDeploy
-  variables:
-    environment: Dev
-  jobs:
-    - job: DEvDeployJob
-      steps:
-      - script: echo $(environment) step1!
-      displayName: 'Run DEvDeployJob Job'
-- stage: QADeploy
-  variables:
-    environment: QA
-  jobs:
-    - job: QADeploy
-      steps:
-      - script: echo $(environment) Deploy step1!
-      displayName: 'Run QADeploy Job'
-- stage: ProdDeploy
-  variables:
-    environment: Production
-  dependsOn:
-  - QADeploy
-  - DEvDeploy
-  jobs:
-    - job: ProdDeploy
-      steps:
-      - script: echo $(environment) step1!
-      displayName: 'Run ProdDeploy'
+# - stage: DEvDeploy
+#   variables:
+#     environment: Dev
+#   jobs:
+#     - job: DEvDeployJob
+#       steps:
+#       - script: echo $(environment) step1!
+#       displayName: 'Run DEvDeployJob Job'
+# - stage: QADeploy
+#   variables:
+#     environment: QA
+#   jobs:
+#     - job: QADeploy
+#       steps:
+#       - script: echo $(environment) Deploy step1!
+#       displayName: 'Run QADeploy Job'
+# - stage: ProdDeploy
+#   variables:
+#     environment: Production
+#   dependsOn:
+#   - QADeploy
+#   - DEvDeploy
+#   jobs:
+#     - job: ProdDeploy
+#       steps:
+#       - script: echo $(environment) step1!
+#       displayName: 'Run ProdDeploy'
 
 
 
