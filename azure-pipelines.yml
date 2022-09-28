@@ -34,6 +34,9 @@ stages:
       - script: echo QADeploy step1!
       displayName: 'Run QADeploy Job'
 - stage: ProdDeploy
+  dependsOn:
+  - QADeploy
+  - DEvDeploy
   jobs:
     - job: ProdDeploy
       steps:
