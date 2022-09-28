@@ -14,10 +14,6 @@ stages:
   jobs:
     - job: FirstJob
       steps:
-      - script: echo Job1 step1!
-      displayName: 'Run First Job'
-    - job: SecondJob
-      steps:
       - script: echo Job2 step2!
       - script: echo $(PiplineLevelVariable)
       - script: echo $(Build.BuildNum)
@@ -25,7 +21,21 @@ stages:
       - script: echo $(Build.SourceBranchName)
       - script: echo $(Build.ArtifactStagingDirectory)
       - script: ls -R $(System.DefaultWorkingDirectory)
-      displayName: 'Run second Job'
+      - script: java -version
+      - script: node --version
+      - script: python --version
+      - script: mvn --version
+      - script: echo $(Build.ArtifactStagingDirectory)
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: '**/*.yaml'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - script: echo $(Build.ArtifactStagingDirectory)
+
+
+
+ 
 
 # - stage: DEvDeploy
 #   variables:
