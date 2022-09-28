@@ -24,8 +24,7 @@ stages:
       - script: echo $(Build.Repository.Name)
       - script: echo $(Build.SourceBranchName)
       - script: echo $(Build.ArtifactStagingDirectory)
-      - script: echo $(System.DefaultWorkingDirectory)
-
+      - script: ls -R $(System.DefaultWorkingDirectory)
       displayName: 'Run second Job'
 
 # - stage: DEvDeploy
