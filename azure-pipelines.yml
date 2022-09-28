@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+    - job: FirstJob
+      steps:
+      - script: echo Job1 step1!
+      displayName: 'Run First Job'
+    - job: SecondJob
+      steps:
+      - script: echo Job2 step2!
+      displayName: 'Run second Job'
+
+- stage: DEvDeploy
+  jobs:
+    - job: DEvDeployJob
+      steps:
+      - script: echo DEvDeployJob step1!
+      displayName: 'Run DEvDeployJob Job'
+- stage: QADeploy
+  jobs:
+    - job: QADeploy
+      steps:
+      - script: echo QADeploy step1!
+      displayName: 'Run QADeploy Job'
+- stage: ProdDeploy
+  jobs:
+    - job: ProdDeploy
+      steps:
+      - script: echo Job1 step1!
+      displayName: 'Run ProdDeploy'
+
+
+
